@@ -16,7 +16,7 @@ private
 
     # solve the little sides
     little_a = @height
-    little_b = @base_diameter - @top_diameter / 2
+    little_b = (@base_diameter - @top_diameter) / 2
     little_c = Math.sqrt((little_a ** 2) + (little_b ** 2))
 
     # solve the big sides
