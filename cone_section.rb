@@ -8,12 +8,17 @@ class ConeSection
   end
 
   def solve
-    big_triangle_sides
+    angles
   end
 
 private
 
   def angles
+    angle_a = Math.sin (@little_triangle_sides[:a] / @little_triangle_sides[:c])
+    {
+      a: angle_a,
+      b: 'foo'
+    }
   end
 
   def little_triangle_sides
@@ -34,8 +39,15 @@ private
       c: @little_triangle_sides[:c] * coefficient
     }
   end
+end
 
-  def radians degrees
-    degrees * Math::PI / 180
+class Numeric
+
+  def to_degrees
+    self * (Math::PI / 180)
+  end
+
+  def to_radians
+    self * (1 / (Math::PI / 180))
   end
 end
