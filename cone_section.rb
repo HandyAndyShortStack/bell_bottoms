@@ -5,6 +5,7 @@ class ConeSection
     @top_diameter = hsh[:top_diameter].to_f
     @little_triangle_sides = little_triangle_sides
     @big_triangle_sides = big_triangle_sides
+    @angles = angles
   end
 
   def solve
@@ -14,10 +15,14 @@ class ConeSection
 private
 
   def angles
-    angle_a = Math.sin (@little_triangle_sides[:a] / @little_triangle_sides[:c])
+    a = @big_triangle_sides[:a]
+    b = @big_triangle_sides[:b]
+    c = @big_triangle_sides[:c]
+    angle_a = Math.acos (((b ** 2) + (c ** 2) - (a ** 2)) / (2 * b * c)) 
     {
-      a: angle_a,
-      b: 'foo'
+      a: angle_a.to_degrees,
+      b: 90.0 - angle_a.to_degrees,
+      c: 90.0
     }
   end
 
@@ -44,10 +49,10 @@ end
 class Numeric
 
   def to_degrees
-    self * (Math::PI / 180)
+    self * (1 / (Math::PI / 180))
   end
 
   def to_radians
-    self * (1 / (Math::PI / 180))
+    self * (Math::PI / 180)
   end
 end
